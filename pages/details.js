@@ -1,6 +1,6 @@
 module.exports = {
   url: function () {
-    return this.api.launchUrl + '/home'
+    return this.api.launchUrl + '/address'
   },
   elements: {
     'main': '#content',
@@ -8,11 +8,13 @@ module.exports = {
     'govukLink': 'a[href="https://www.gov.uk"]',
     'betaBanner': '.phase-banner-beta',
     'feedbackLink': 'a[href="http://www.smartsurvey.co.uk/s/FloodWarningService"]',
+    'backButton': '.link-back',
     'header': 'h1',
-    'signupText': 'h2',
-    'signupLink': '.column-two-thirds > p:nth-child(3) > a:nth-child(1)',
-    'updateText': 'h2.heading-medium:nth-child(4)',
-    'updateLink': '.column-two-thirds > p:nth-child(5) > a:nth-child(1)',
+    'headerSubtext': '#content > p:nth-child(4)',
+    'postcode': '#content > p:nth-child(5) > b:nth-child(1)',
+    'changeaddressLink': 'a[href="/app/olr/changeaddress?method=changeAddress"]',
+    'listofaddresses': '.olr',
+    'cantfindaddressLink': 'a[href="/app/olr/postcodeMbr?method=searchByPostcodeMbr&postcode="]',
     'privacyLink': 'a[href="https://www.gov.uk/help/privacy-policy"]',
     'cookiesLink': 'a[href="https://www.gov.uk/help/cookies"]',
     'oglStatement': '.open-government-licence > p:nth-child(2)',
@@ -24,13 +26,20 @@ module.exports = {
     load: function () {
       return this.navigate()
     },
-    signUp: function (value) {
-      return this.waitForElementVisible('@signupLink', 1000)
-      .click('@signupLink')
+    back: function (value) {
+      return this.waitForElementVisible('@backButton', 1000)
+      .click('@backButton')
     },
-    signIn: function () {
-      return this.waitForElementVisible('@updateLink', 1000)
-      .click('@signinLink')
+    setPostcode: function (value) {
+      return this.setValue('@postcodeInput', value)
+    },
+    selectFindAddress: function () {
+      return this.waitForElementVisible('@findaddressButton', 1000)
+      .click('@findaddressButton')
+    },
+    searchTownCity: function () {
+      return this.waitForElementVisible('@altsearchLink', 1000)
+      .click('@altsearchLink')
     }
   }]
 }

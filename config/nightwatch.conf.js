@@ -9,7 +9,7 @@ var reporter = new HtmlReporter({
 
 // Get the launchUrl from the argv,
 // otherwise default to localhost:3000
-var url = 'https://fmp-qa.envage.co.uk/'
+var url = 'https://wwwtnv.fws.environment-agency.gov.uk/app/olr'
 var urlIdx = process.argv.indexOf('--url')
 
 if (urlIdx > 1) {
